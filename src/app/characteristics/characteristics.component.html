@@ -1,0 +1,23 @@
+<ng-container *ngIf="chars">
+  <table>
+    <tr>
+      <th># </th>
+      <th>ID</th>
+      <th>Characteristic</th>
+      <th>Not reportable</th>
+      <th>isElement</th>
+      <th>Alias</th>
+    </tr>
+    <ng-container *ngFor="let charGroup of characteristicsControls.controls;  index as i">
+      <tr [formGroup]="charGroup">
+        <td> <mat-checkbox  formControlName="selected"></mat-checkbox></td>
+        <td> {{chars[i].id}}. <input type="hidden" formControlName="id"></td>
+        <td> {{chars[i].name}} </td>
+        <td> <mat-checkbox formControlName="notReportabled"> </mat-checkbox> </td>
+        <td> <mat-checkbox formControlName="isElement"> </mat-checkbox> </td>
+        <td> <input type="text" formControlName="alias" name="alias" id="alias"></td>
+      </tr>
+    </ng-container>
+
+  </table>
+</ng-container>

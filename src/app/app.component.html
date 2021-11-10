@@ -1,1 +1,5 @@
-<router-outlet></router-outlet>
+<form [formGroup]='frmChars'>
+  <app-characteristics formControlName="chars"></app-characteristics>
+</form>
+
+{{frmChars.value | json}}
