@@ -2,6 +2,7 @@ import { CharacteristicModel } from "../model/characteristic.model";
 
 export const charsConst = [
   {
+    checked: true,
     id: -999999,
     name: "PRD_ELEMENT",
     type: "regular",
