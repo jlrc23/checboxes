@@ -1,79 +1,36 @@
-<ng-container *ngIf="chars && dataSource && frmChars">
-<form  [formGroup]="frmChars">
+<ng-container *ngIf="chars && dataSource && frmMainChars">
+<form  [formGroup]="frmMainChars">
   <table mat-table [dataSource]="dataSource" formArrayName='chars'>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let charControls; let i = index; columns: displayedColumns"></mat-row>
+    <mat-row *matRowDef="let frmChars; columns: displayedColumns"></mat-row>
 
     <ng-container matColumnDef="selected">
       <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
-      <mat-cell *matCellDef="let charControl; let i = index;" [formGroupName]="i"> <mat-checkbox  formControlName="selected"></mat-checkbox></mat-cell>
+      <mat-cell *matCellDef="let frmChar;" [formGroup]="frmChar"> <mat-checkbox  formControlName="selected"></mat-checkbox></mat-cell>
     </ng-container>
     <ng-container matColumnDef="notReportabled">
       <mat-header-cell *matHeaderCellDef> notReportabled </mat-header-cell>
-      <mat-cell *matCellDef="let charControl;  let i = index;" [formGroupName]="i"> <mat-checkbox  formControlName="notReportabled"></mat-checkbox></mat-cell>
+      <mat-cell *matCellDef="let frmChar;" [formGroup]="frmChar"> <mat-checkbox  formControlName="notReportabled"></mat-checkbox></mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="isElement">
       <mat-header-cell *matHeaderCellDef> isElement </mat-header-cell>
-      <mat-cell *matCellDef="let charControl;  let i = index;" [formGroupName]="i"> <mat-checkbox  formControlName="isElement"></mat-checkbox></mat-cell>
+      <mat-cell *matCellDef="let frmChar;" [formGroup]="frmChar"> <mat-checkbox  formControlName="isElement"></mat-checkbox></mat-cell>
     </ng-container>
     <ng-container matColumnDef="alias">
       <mat-header-cell *matHeaderCellDef> alias </mat-header-cell>
-      <mat-cell *matCellDef="let charControl;  let i = index;" [formGroupName]="i"><input type="text" formControlName="alias" name="alias" id="alias"></mat-cell>
+      <mat-cell *matCellDef="let frmChar;" [formGroup]="frmChar"><input type="text" formControlName="alias" name="alias" id="alias"></mat-cell>
     </ng-container>
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-      <mat-cell *matCellDef="let charControl;  let i = index;" [formGroupName]="i">  {{ chars[i].id }} <input type="hidden" formControlName="id" name="id"> </mat-cell>
+      <mat-cell *matCellDef="let frmChar;" [formGroup]="frmChar">{{ frmChar.get('id').value }} <input type="hidden" formControlName="id" name="id" /> </mat-cell>
     </ng-container>
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Characteristic </mat-header-cell>
-      <mat-cell *matCellDef="let charControl;  let i = index;" > {{ chars[i].name }} </mat-cell>
+      <mat-cell *matCellDef="let frmChar;" [formGroup]="frmChar"> {{ frmChar.get('name').value }} <input type="hidden" formControlName="name" name="name" /> </mat-cell>
     </ng-container>
-
-
   </table>
   <mat-paginator #paginator [pageSize]="2" [pageSizeOptions]="[2, 5, 10, 25, 100]">
   </mat-paginator>
 </form>
 </ng-container>
-<!--
-    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
-    <tr mat-row *matRowDef="let row; let i = index; columns: displayColumns;" [formGroupName]="i"></tr>
-
-    <ng-container matColumnDef="from">
-      <th mat-header-cell *matHeaderCellDef> From </th>
-      <td mat-cell *matCellDef="let row">
-        <input type="date" formControlName="from" placeholder="From date">
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="to">
-      <th mat-header-cell *matHeaderCellDef> To </th>
-      <td mat-cell *matCellDef="let row">
-        <input type="date" formControlName="to" placeholder="To date">
-      </td>
-    </ng-container>
-
-  <ng-container *ngIf="chars">
-  <table mat-table [dataSource]="dataSource" formArrayName="characteristicsControls">
-    <tr>
-      <th># </th>
-      <th>ID</th>
-      <th>Characteristic</th>
-      <th>Not reportable</th>
-      <th>isElement</th>
-      <th>Alias</th>
-    </tr>
-    <ng-container *ngFor="let charGroup of characteristicsControls.controls;  index as i">
-      <tr [formGroup]="charGroup">
-        <td> <mat-checkbox  formControlName="selected"></mat-checkbox></td>
-        <td> {{chars[i].id}}. <input type="hidden" formControlName="id"></td>
-        <td> {{chars[i].name}} </td>
-        <td> <mat-checkbox formControlName="notReportabled"></mat-checkbox> </td>
-        <td> <mat-checkbox formControlName="isElement"> </mat-checkbox> </td>
-        <td> <input type="text" formControlName="alias" name="alias" id="alias"></td>
-      </tr>
-    </ng-container>
-
-  </table>
-</ng-container>-->
